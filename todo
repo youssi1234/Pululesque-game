@@ -1,1 +1,12 @@
 Test
+
+ty important iany raha anao jeu tsika pululu
+
+INITIALISATION
+↓
+BOUCLE DE JEU (game loop)
+   ├── INPUT (clavier / souris)
+   ├── LOGIQUE (mise à jour)
+   └── RENDU (affichage)
+↓
+FIN
