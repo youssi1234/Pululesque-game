@@ -55,3 +55,18 @@ Tant que le jeu tourne :
 ❌ ne pas rafraîchir l’écran
 ❌ mélanger logique et affichage
 
+Points importants
+
+get_pos() : retourne un tuple (x, y) avec les coordonnées
+
+get_pressed() : retourne un tuple de 3 booléens (gauche, milieu, droite)
+
+Utilisez collidepoint() pour vérifier si un point est dans un rectangle
+
+Attention : get_pressed() donne l'état EN CE MOMENT, pas les événements de clic
+
+Pour détecter un clic unique, préférez utiliser pygame.MOUSEBUTTONDOWN dans la boucle d'événements
+
+
+Pour une classe creer , on doit avoir un constructeur __init__() pour initialiser les attributs de l'objet
+puis mettre self devant les attributs pour dire que ce sont des attributs propre a chaque objet de la classe
