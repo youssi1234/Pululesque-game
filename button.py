@@ -2,23 +2,38 @@ import pygame
 
 
 class Button:
-    def __init__(self , x, y, width, height):
+    def __init__(self, x, y, width, height):
 
-        self.rect_original = pygame.Rect(x, y, width, height)  # Garder une copie de la position originale
+        self.rect_original = pygame.Rect(
+            x, y, width, height
+        )  # Garder une copie de la position originale
         self.rect = self.rect_original.copy()  # Pratique pour les collisions
-        self.color = (255, 255, 255)  # Couleur de base du bouton (steel blue)
-        self.hover_color = (220, 220, 220)  # Couleur du bouton au survol
+        self.color = (0, 0, 0)  # Couleur de base du bouton (steel blue)
+        self.hover_color = (10, 10, 10)  # Couleur du bouton au survol
         self.text = "Cliquez ici"
         self.font = pygame.font.Font("typo/PIXELIFYSANS-BOLD.TTF", 20)
 
-    def draw(self, screen):
-        if self.is_hovered():
-            color = self.hover_color
-        else:
-            color = self.color
+        self.shadow_surf = pygame.Surface((width, height), pygame.SRCALPHA)
+        self.shadow_surf.fill((215, 255, 40, 255))
+        self.shadow_offset = (5, 5)
 
-        pygame.draw.rect(screen, color, self.rect )
-        text_surf = self.font.render(self.text, True, (0, 0, 0))
+    def draw(self, screen):
+
+        is_hover = self.is_hovered()
+        color = self.hover_color if is_hover else self.color
+
+        screen.blit(
+            self.shadow_surf,
+            (
+                self.rect_original.x + self.shadow_offset[0],
+                self.rect_original.y + self.shadow_offset[1],
+            ),
+        )
+
+        pygame.draw.rect(screen, color, self.rect)
+        pygame.draw.rect(screen, (0,0,0), self.rect , 4)
+
+        text_surf = self.font.render(self.text, True, (255, 255, 255))
         text_rect = text_surf.get_rect(center=self.rect.center)
         screen.blit(text_surf, text_rect)
 
@@ -42,4 +57,3 @@ class Button:
     def center(self, screen_width):
         """Centre uniquement l'horizontale"""
         self.rect_original.x = (screen_width - self.rect_original.width) // 2
-        

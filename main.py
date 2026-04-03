@@ -24,8 +24,6 @@ size_button = (300, 80)
 button = Button(230, 250, size_button[0], size_button[1])
 button.center(size_screen[0]) # Centrage du bouton en tenant compte de la taille du titre
 
-shadow_brutalist = pygame.Surface((size_button[0], size_button[1]), pygame.SRCALPHA)
-shadow_brutalist.fill((215, 255, 40, 255)) # Ombre pour un effet brutaliste
 
 background_original = pygame.image.load("sky.jpg").convert_alpha()
 background = pygame.transform.scale(background_original, size_screen)
@@ -48,7 +46,6 @@ while running:
     # Ensuite le titre (couche du milieu)
     screen.blit(shadow, (title_rect.x + 3, title_rect.y + 3)) # Ombre pour le titre
     screen.blit(title_text, title_rect)
-    screen.blit(shadow_brutalist, (button.rect.x + 5, button.rect.y + 5)) # Ombre pour le bouton
 
     # Enfin le bouton (couche du dessus)
     button.draw(screen)
