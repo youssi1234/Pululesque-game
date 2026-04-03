@@ -8,10 +8,10 @@ class Button:
             x, y, width, height
         )  # Garder une copie de la position originale
         self.rect = self.rect_original.copy()  # Pratique pour les collisions
-        self.color = (0, 0, 0)  # Couleur de base du bouton (steel blue)
-        self.hover_color = (10, 10, 10)  # Couleur du bouton au survol
-        self.text = "Cliquez ici"
-        self.font = pygame.font.Font("typo/PIXELIFYSANS-BOLD.TTF", 20)
+        self.color = (255, 255, 255)  # Couleur de base du bouton (steel blue)
+        self.hover_color = (220, 220, 220)  # Couleur du bouton au survol
+        self.text = "PLAY"
+        self.font = pygame.font.Font("typo/PIXELIFYSANS-BOLD.TTF", 40)
 
         self.shadow_surf = pygame.Surface((width, height), pygame.SRCALPHA)
         self.shadow_surf.fill((215, 255, 40, 255))
@@ -31,9 +31,9 @@ class Button:
         )
 
         pygame.draw.rect(screen, color, self.rect)
-        pygame.draw.rect(screen, (0,0,0), self.rect , 4)
+        # pygame.draw.rect(screen, (0,0,0), self.rect , 4)
 
-        text_surf = self.font.render(self.text, True, (255, 255, 255))
+        text_surf = self.font.render(self.text, True, (0, 0, 0))
         text_rect = text_surf.get_rect(center=self.rect.center)
         screen.blit(text_surf, text_rect)
 
