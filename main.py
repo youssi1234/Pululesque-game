@@ -2,21 +2,33 @@ import pygame
 from button import Button
 
 pygame.init()
+
+size_screen = (600, 400)
 pygame.display.set_caption("Pygame Window")
-screen = pygame.display.set_mode((600, 400))
+screen = pygame.display.set_mode(size_screen)
+
 
 fluidity = 60
 clock = pygame.time.Clock()
 
-font_title = pygame.font.SysFont("THE FONT (FREE VERSION)", 60)
-title_text = font_title.render("Pululu.Corp", True, (255, 255, 255))
-title_rect = title_text.get_rect(center=(300, 200))
-shadow = font_title.render("Pululu.Corp", True, (0, 0, 0))
+size_title = 60
 
-button = Button(230, 300, 100, 80)
+font_title = pygame.font.Font("typo/PIXELMANIA.TTF", size_title)
+title_text = font_title.render("PULULU", True, (255, 255, 255))
+title_rect = title_text.get_rect(center=(300, 100))
+shadow = font_title.render("PULULU", True, (215, 255, 40))
+
+
+size_button = (300, 80)
+
+button = Button(230, 250, size_button[0], size_button[1])
+button.center(size_screen[0]) # Centrage du bouton en tenant compte de la taille du titre
+
+shadow_brutalist = pygame.Surface((size_button[0], size_button[1]), pygame.SRCALPHA)
+shadow_brutalist.fill((215, 255, 40, 255)) # Ombre pour un effet brutaliste
 
 background_original = pygame.image.load("sky.jpg").convert_alpha()
-background = pygame.transform.scale(background_original, (600, 400))
+background = pygame.transform.scale(background_original, size_screen)
 
 
 running = True
@@ -29,12 +41,6 @@ while running:
         if button.is_clicked():
             print("Button clicked!")
 
-    # Tandremana tsara fa kay le izy mande par ordre d'affichage otrany photoshop na gimp, 
-    # le izy affiche d'abord le fond, ensuite le titre, 
-    # et enfin le bouton par dessus les deux autres. 
-    # Raha ovaina ny ordre dia mety tsy hiseho tsara ilay bouton 
-    # na ilay titre satria mety ho afenina amin'ny sary hafa izy ireo.
-
 
     # D'abord le fond (couche du dessous)
     screen.blit(background, (0, 0))
@@ -42,11 +48,11 @@ while running:
     # Ensuite le titre (couche du milieu)
     screen.blit(shadow, (title_rect.x + 3, title_rect.y + 3)) # Ombre pour le titre
     screen.blit(title_text, title_rect)
+    screen.blit(shadow_brutalist, (button.rect.x + 5, button.rect.y + 5)) # Ombre pour le bouton
 
     # Enfin le bouton (couche du dessus)
     button.draw(screen)
 
-    # 3. MISE À JOUR DE L'ÉCRAN
     pygame.display.flip()
     clock.tick(fluidity)
 
