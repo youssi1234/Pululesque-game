@@ -19,7 +19,7 @@ title_rect = title_text.get_rect(center=(300, 100))
 shadow = font_title.render("PULULU", True, (215, 255, 40))
 
 
-size_button = (500, 70)
+size_button = (300, 70)
 
 button = Button(230, 250, size_button[0], size_button[1])
 button.center(size_screen[0]) # Centrage du bouton en tenant compte de la taille du titre
@@ -38,6 +38,7 @@ while running:
 
         if button.is_clicked():
             print("Button clicked!")
+            
 
 
     # D'abord le fond (couche du dessous)
