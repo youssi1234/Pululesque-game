@@ -1,5 +1,7 @@
 import pygame
 from button import Button
+
+
 class Menu:
 
     def __init__(self, etat):
@@ -30,7 +32,8 @@ class Menu:
         self.button.draw(screen)
 
         if self.button.is_clicked():
-            self.etat.switch_state("game")
+            
+            self.etat.switch_state("loading")
 
     def handle_events(self, events):
         pass

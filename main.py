@@ -2,6 +2,8 @@ import pygame
 from menu import Menu
 from game import Game
 from etat import Etat
+from loadingAnim import LoadingAnim
+
 
 pygame.init()
 
@@ -12,6 +14,8 @@ screen = pygame.display.set_mode(size_screen)
 
 game_state = Etat()
 menu = Menu(game_state)
+game = Game(game_state)
+loadingAnim = LoadingAnim()
 
 fluidity = 60
 clock = pygame.time.Clock()
@@ -23,13 +27,19 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    game_state.update_loading()
+
     if game_state.current_state == "menu":
         menu.draw(screen)
 
+    elif game_state.current_state == "loading":
+        menu.draw(screen)
+        loadingAnim.draw(screen)
+
     elif game_state.current_state == "game":
-        game = Game(game_state)
         game.draw(screen)
-        
+    
+
 
     pygame.display.flip()
     clock.tick(fluidity)
