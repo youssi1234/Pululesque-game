@@ -2,15 +2,15 @@ import pygame
 
 
 class Button:
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, width, height , color , text):
 
         self.rect_original = pygame.Rect(
             x, y, width, height
         )  # Garder une copie de la position originale
         self.rect = self.rect_original.copy()  # Pratique pour les collisions
-        self.color = (255, 255, 255)  # Couleur de base du bouton (steel blue)
+        self.color = pygame.Color(color)  # Couleur de base du bouton (steel blue)
         self.hover_color = (220, 220, 220)  # Couleur du bouton au survol
-        self.text = "PLAY"
+        self.text = text
         self.font = pygame.font.Font("typo/PIXELIFYSANS-BOLD.TTF", 40)
 
         self.shadow_surf = pygame.Surface((width, height), pygame.SRCALPHA)
@@ -57,3 +57,4 @@ class Button:
     def center(self, screen_width):
         """Centre uniquement l'horizontale"""
         self.rect_original.x = (screen_width - self.rect_original.width) // 2
+        self.rect.x = self.rect_original.x

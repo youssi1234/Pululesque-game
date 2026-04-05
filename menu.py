@@ -1,9 +1,5 @@
 import pygame
 from button import Button
-from etat import Etat
-
-
-
 class Menu:
 
     def __init__(self, etat):
@@ -20,10 +16,11 @@ class Menu:
         self.title_shadow = self.font_title.render("PULULU", True, (215, 255, 40))
 
         # bouton
-        self.button = Button(230, 250, 300, 70)
+        self.button = Button(230, 250, 300, 70 ,(255, 255, 255), "PlY BOY")
         self.button.center(600)
 
     def draw(self, screen):
+        
 
         screen.blit(self.background, (0, 0))
 
