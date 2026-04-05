@@ -1,6 +1,6 @@
 import pygame 
 
-class LoadingAnim:
+class LoadingAnim(pygame.sprite.Sprite):
     def __init__(self):
 
         self.images = []
@@ -27,4 +27,4 @@ class LoadingAnim:
 
         # 2. Afficher l'image en bas à droite (600x400 est ton écran)
         img = self.images[self.index]
-        screen.blit(img, (460, 260)) 
+        screen.blit(img, (660, 460)) 

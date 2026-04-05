@@ -7,14 +7,17 @@ from loadingAnim import LoadingAnim
 
 pygame.init()
 
-size_screen = (600, 400)
+screen_width = 800
+screen_height = 620
+size_screen = (screen_width, screen_height)
+
 pygame.display.set_caption("Pygame Window")
 screen = pygame.display.set_mode(size_screen)
 
 
 game_state = Etat()
-menu = Menu(game_state)
-game = Game(game_state)
+menu = Menu(game_state , screen_width, screen_height)
+game = Game(game_state , screen_width , screen_height)
 loadingAnim = LoadingAnim()
 
 fluidity = 60
