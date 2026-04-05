@@ -8,7 +8,7 @@ class Menu:
         self.etat = etat
 
         # background
-        bg = pygame.image.load("sky.jpg").convert_alpha()
+        bg = pygame.image.load("assets/sunset_clouds_over_the_sea_pixel_background/sky.jpg").convert_alpha()
         self.background = pygame.transform.scale(bg, (600, 400))
 
         # titre
