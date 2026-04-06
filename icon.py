@@ -22,13 +22,11 @@ class Icon(pygame.sprite.Sprite):
             self.images_idle.append(pygame.transform.scale(brute, (70, 70)))
 
         for i in range(6):
-            brute = pygame.image.load(f"assets/craftpix-net-622999-free-pixel-art-tiny-hero-sprites/rush-pink-back/{i+1}.PNG").convert_alpha()
-            self.images_run_back.append(pygame.transform.scale(brute, (70, 70)))
+            self.images_run_back.append(pygame.transform.flip(self.images_run[i], True, False))
             
         # Chargement repos (IDLE) - Ajuste le chemin vers ton image fixe
         for i in range(4):
-            brute = pygame.image.load(f"assets/craftpix-net-622999-free-pixel-art-tiny-hero-sprites/idle-pink-back/{i+1}.PNG").convert_alpha()
-            self.images_idle_back.append(pygame.transform.scale(brute, (70, 70)))
+            self.images_idle_back.append(pygame.transform.flip(self.images_idle[i], True, False))
 
         self.current_images = self.images_idle
 
@@ -41,9 +39,8 @@ class Icon(pygame.sprite.Sprite):
         self.animation_speed = 0.2
         self.counter = 0
 
+    def direction(self):
 
-    def move(self, screen):
-        
         # ito ilay fonction any le ntenenko anla teo 
         is_moving = any(self.key_Held.get(key) for key in [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT])
         
@@ -78,11 +75,14 @@ class Icon(pygame.sprite.Sprite):
         else:
             self.current_images = self.images_idle if self.last_direction == "right" else self.images_idle_back
 
+    def count(self):
         self.counter += self.animation_speed
         if self.counter >= len(self.current_images):
             self.counter = 0
         self.index = int(self.counter)
-    
+
+    def position(self,screen):
+
         if self.key_Held.get(pygame.K_RIGHT):
             if self.rect.x >= (screen.get_width() - self.rect.width) - utiles.marge_X(screen, 10):
                 self.rect.x = (screen.get_width() - self.rect.width) - utiles.marge_X(screen, 10)
@@ -96,7 +96,7 @@ class Icon(pygame.sprite.Sprite):
             else:
                 self.rect.x -= self.velocity
 
-        elif self.key_Held.get(pygame.K_UP):
+        if self.key_Held.get(pygame.K_UP):
             if self.rect.y <= utiles.marge_Y(screen, 10):
                 self.rect.y = utiles.marge_Y(screen, 10)
             else:
@@ -107,6 +107,13 @@ class Icon(pygame.sprite.Sprite):
                 self.rect.y = (screen.get_height() - self.rect.height) - utiles.marge_Y(screen, 10)
             else:
                 self.rect.y += self.velocity
+
+       
+
+    def move(self, screen):
+        self.direction()
+        self.count()
+        self.position(screen)
 
     def draw(self, screen):
 
