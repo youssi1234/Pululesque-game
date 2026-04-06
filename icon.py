@@ -54,20 +54,30 @@ class Icon(pygame.sprite.Sprite):
         is_moving_right = self.key_Held.get(pygame.K_RIGHT)
 
         # verification an'ilay evenement mietsika 
-        if is_moving:
-            if is_moving_right or is_moving_up or is_moving_down:
-                self.current_images = self.images_run
-                self.last_direction = "right"
-            elif is_moving_left:
-                self.current_images = self.images_run_back
-                self.last_direction = "left"
+        # if is_moving:
+        #     if is_moving_right or is_moving_up or is_moving_down:
+        #         self.current_images = self.images_run
+        #         self.last_direction = "right"
+        #     elif is_moving_left:
+        #         self.current_images = self.images_run_back
+        #         self.last_direction = "left"
 
-        # ito ndray ho an'ilay tsy mietsika izay miverina amin'ilay idle
-        elif not is_moving and self.last_direction == "right":
-            self.current_images = self.images_idle
-        elif not is_moving and self.last_direction == "left":
-            self.current_images = self.images_idle_back
-        
+        # # ito ndray ho an'ilay tsy mietsika izay miverina amin'ilay idle
+        # elif not is_moving and self.last_direction == "right":
+        #     self.current_images = self.images_idle
+        # elif not is_moving and self.last_direction == "left":
+        #     self.current_images = self.images_idle_back
+
+        if is_moving_right:
+            self.last_direction = "right"
+        elif is_moving_left:
+            self.last_direction = "left"
+
+        if is_moving:
+            self.current_images = self.images_run if self.last_direction == "right" else self.images_run_back
+        else:
+            self.current_images = self.images_idle if self.last_direction == "right" else self.images_idle_back
+
         self.counter += self.animation_speed
         if self.counter >= len(self.current_images):
             self.counter = 0
