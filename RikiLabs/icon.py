@@ -11,8 +11,8 @@ class icon(pygame.sprite.Sprite):
     def move(self, screen):
         
         if self.key_Held.get(pygame.K_RIGHT):
-            if self.rect.x == screen.get_width():
-                self.rect.x = screen.get_width()
+            if self.rect.x >= screen.get_width() - self.rect.width:
+                self.rect.x = screen.get_width() - self.rect.width
             else:
                 self.rect.x += self.velocity
 
@@ -29,7 +29,7 @@ class icon(pygame.sprite.Sprite):
                 self.rect.y -= self.velocity
 
         elif self.key_Held.get(pygame.K_DOWN):
-            if self.rect.y == screen.get_height():
-                self.rect.y = screen.get_height()
+            if self.rect.y >= screen.get_height() - self.rect.height:
+                self.rect.y = screen.get_height() - self.rect.height
             else:
                 self.rect.y += self.velocity
