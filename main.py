@@ -1,5 +1,7 @@
 import pygame
-from button import Button
+from menu import Menu
+from game import Game
+from etat import Etat
 
 pygame.init()
 
@@ -8,26 +10,11 @@ pygame.display.set_caption("Pygame Window")
 screen = pygame.display.set_mode(size_screen)
 
 
+game_state = Etat()
+menu = Menu(game_state)
+
 fluidity = 60
 clock = pygame.time.Clock()
-
-size_title = 60
-
-font_title = pygame.font.Font("typo/PIXELMANIA.TTF", size_title)
-title_text = font_title.render("PULULU", True, (255, 255, 255))
-title_rect = title_text.get_rect(center=(300, 100))
-shadow = font_title.render("PULULU", True, (215, 255, 40))
-
-
-size_button = (500, 70)
-
-button = Button(230, 250, size_button[0], size_button[1])
-button.center(size_screen[0]) # Centrage du bouton en tenant compte de la taille du titre
-
-
-background_original = pygame.image.load("sky.jpg").convert_alpha()
-background = pygame.transform.scale(background_original, size_screen)
-
 
 running = True
 while running:
@@ -36,19 +23,13 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        if button.is_clicked():
-            print("Button clicked!")
+    if game_state.current_state == "menu":
+        menu.draw(screen)
 
-
-    # D'abord le fond (couche du dessous)
-    screen.blit(background, (0, 0))
-
-    # Ensuite le titre (couche du milieu)
-    screen.blit(shadow, (title_rect.x + 3, title_rect.y + 3)) # Ombre pour le titre
-    screen.blit(title_text, title_rect)
-
-    # Enfin le bouton (couche du dessus)
-    button.draw(screen)
+    elif game_state.current_state == "game":
+        game = Game(game_state)
+        game.draw(screen)
+        
 
     pygame.display.flip()
     clock.tick(fluidity)
