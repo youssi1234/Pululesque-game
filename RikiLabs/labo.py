@@ -11,13 +11,11 @@ icon_player = icon()
 
 
 running = True
-
 while running:
-
 
     screen.blit(icon_player.image, icon_player.rect)
     pygame.display.flip()
-    icon_player.move()
+    icon_player.move(screen)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
