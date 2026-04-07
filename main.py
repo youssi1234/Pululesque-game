@@ -1,8 +1,8 @@
 import pygame
-from menu import Menu
-from game import Game
+from screen.menu import Menu
+from screen.game import Game
 from etat import Etat
-from loadingAnim import LoadingAnim
+from composant.loadingAnim import LoadingAnim
 
 pygame.init()
 

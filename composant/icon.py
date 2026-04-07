@@ -1,5 +1,5 @@
 import pygame
-import utiles as utiles
+import composant.utiles as utiles
 
 class Icon(pygame.sprite.Sprite):
     def __init__(self, screen):

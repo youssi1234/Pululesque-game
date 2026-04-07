@@ -1,7 +1,7 @@
 import pygame
 
-from button import Button 
-from icon import Icon
+from composant.button import Button 
+from composant.icon import Icon
 
 class Game:
 
