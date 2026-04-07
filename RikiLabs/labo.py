@@ -1,5 +1,6 @@
 import pygame
 from icon import icon
+
 pygame.init()
 
 # Créer la fenêtre
@@ -7,7 +8,7 @@ screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("Mon premier jeu")
 
 # Element à mettre dans la fenetre
-icon_player = icon()
+icon_player = icon(screen)
 
 
 running = True
