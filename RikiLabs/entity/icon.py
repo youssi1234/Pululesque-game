@@ -28,12 +28,13 @@ class icon(pygame.sprite.Sprite):
         elif self.key_Held.get(pygame.K_UP):
             if self.rect.y == utiles.marge_Y(screen, 10):
                 self.rect.y = utiles.marge_Y(screen, 10)
+                map.rect.y += map.velocity
             else:
                 self.rect.y -= self.velocity
 
         elif self.key_Held.get(pygame.K_DOWN):
             if self.rect.y >= (screen.get_height() - self.rect.height) - utiles.marge_Y(screen, 10):
-                self.rect.y = (screen.get_height() - self.rect.height) - utiles.marge_X(screen, 10)
-                map.rect.y += map.velocity
+                self.rect.y = (screen.get_height() - self.rect.height) - utiles.marge_Y(screen, 10)
+                map.rect.y -= map.velocity
             else:
                 self.rect.y += self.velocity
