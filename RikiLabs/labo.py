@@ -1,27 +1,26 @@
 import pygame
-from RikiLabs.entity.icon import icon
-from RikiLabs.map.map import map
 from RikiLabs.game import game
+from RikiLabs.assets.map.map import MapManager
 
 pygame.init()
 
 # Créer la fenêtre
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((800, 620))
 pygame.display.set_caption("Mon premier jeu")
 
 # Element à mettre dans la fenetre
 TheGame = game(screen)
+map_manager = MapManager(screen.get_size())
 
 running = True
 while running:
 
     # mettre les éléments dans screen
-    screen.blit(TheGame.mapEx.image, TheGame.mapEx.rect)
     screen.blit(TheGame.icon_player.image, TheGame.icon_player.rect)
     pygame.display.flip()
 
     # interaction avec les elements
-    TheGame.icon_player.move(screen, TheGame.mapEx)
+    TheGame.icon_player.move(screen)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -31,5 +30,7 @@ while running:
         elif event.type == pygame.KEYUP:
             TheGame.icon_player.key_Held[event.key] = False
     screen.fill((0, 0, 0))  # fond noir
+    map_manager.render(screen, (0, 0))
+    pygame.display.flip()
 
 pygame.quit()
