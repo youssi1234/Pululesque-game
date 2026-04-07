@@ -1,5 +1,5 @@
 import pygame
-import utiles
+import RikiLabs.utiles as utiles
 
 class icon(pygame.sprite.Sprite):
     def __init__(self, screen):
@@ -11,7 +11,7 @@ class icon(pygame.sprite.Sprite):
         self.rect.y = (screen.get_height() / 2) - (self.rect.height / 2)
 
 
-    def move(self, screen):
+    def move(self, screen, map):
         
         if self.key_Held.get(pygame.K_RIGHT):
             if self.rect.x >= (screen.get_width() - self.rect.width) - utiles.marge_X(screen, 10):
@@ -34,5 +34,6 @@ class icon(pygame.sprite.Sprite):
         elif self.key_Held.get(pygame.K_DOWN):
             if self.rect.y >= (screen.get_height() - self.rect.height) - utiles.marge_Y(screen, 10):
                 self.rect.y = (screen.get_height() - self.rect.height) - utiles.marge_X(screen, 10)
+                map.rect.y += map.velocity
             else:
                 self.rect.y += self.velocity

@@ -1,5 +1,6 @@
 import pygame
-from icon import icon
+from RikiLabs.entity.icon import icon
+from RikiLabs.map.map import map
 
 pygame.init()
 
@@ -9,14 +10,18 @@ pygame.display.set_caption("Mon premier jeu")
 
 # Element à mettre dans la fenetre
 icon_player = icon(screen)
-
+mapEx = map(screen)
 
 running = True
 while running:
 
+    # mettre les éléments dans screen
+    screen.blit(mapEx.image, mapEx.rect)
     screen.blit(icon_player.image, icon_player.rect)
     pygame.display.flip()
-    icon_player.move(screen)
+
+    # interaction avec les elements
+    icon_player.move(screen, mapEx)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
