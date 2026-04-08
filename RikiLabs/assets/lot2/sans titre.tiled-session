@@ -1,0 +1,44 @@
+{
+    "activeFile": "map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "RPGNature.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        },
+        "map.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 340.5,
+                "y": 536.5
+            }
+        }
+    },
+    "last.externalTilesetPath": "C:/Users/rakot/Documents/ITU/S4/pulululesqu-game/Pululesque-game/RikiLabs/assets/lot2",
+    "last.imagePath": "C:/Users/rakot/Documents/ITU/S4/pulululesqu-game/Pululesque-game/RikiLabs/assets/lot2",
+    "map.height": 50,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 50,
+    "openFiles": [
+        "map.tmx",
+        "RPGNature.tsx"
+    ],
+    "project": "sans titre.tiled-project",
+    "recentFiles": [
+        "RPGNature.tsx",
+        "map.tmx"
+    ],
+    "tileset.lastUsedFilter": "Fichiers de jeu de tuiles Tiled (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.transparentColor": "#000000",
+    "tileset.useTransparentColor": true
+}

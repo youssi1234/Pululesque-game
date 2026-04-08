@@ -1,6 +1,7 @@
 import pygame
+import pytmx
+import pyscroll
 from RikiLabs.game import game
-from RikiLabs.assets.map.map import MapManager
 
 pygame.init()
 
@@ -10,17 +11,18 @@ pygame.display.set_caption("Mon premier jeu")
 
 # Element à mettre dans la fenetre
 TheGame = game(screen)
-map_manager = MapManager(screen.get_size())
+
+clock = pygame.time.Clock()
 
 running = True
 while running:
 
     # mettre les éléments dans screen
-    screen.blit(TheGame.icon_player.image, TheGame.icon_player.rect)
+    TheGame.mapI.groupLayer_Map.draw(screen)
     pygame.display.flip()
 
     # interaction avec les elements
-    TheGame.icon_player.move(screen)
+    TheGame.icon_player.move()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -30,7 +32,6 @@ while running:
         elif event.type == pygame.KEYUP:
             TheGame.icon_player.key_Held[event.key] = False
     screen.fill((0, 0, 0))  # fond noir
-    map_manager.render(screen, (0, 0))
-    pygame.display.flip()
+    clock.tick(60)
 
 pygame.quit()
