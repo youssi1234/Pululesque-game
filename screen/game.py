@@ -1,20 +1,22 @@
 import pygame
 
-from button import Button 
-from icon import Icon
-
+from composant.button import Button 
+from composant.icon import Icon
+from screen.map import Map
 class Game:
 
     def __init__(self,etat, screen_width , screen_height , screen):
         self.etat = etat
         self.button = Button(50 , 50 , 30 , 30 , (255, 255, 255) , "<-")
-        bg = pygame.image.load("assets/fond/10.png").convert()
-        self.bg = pygame.transform.scale(bg,(screen_width,screen_height))
+        # bg = pygame.image.load("assets/map/10.png").convert()
+        # self.bg = pygame.transform.scale(bg,(screen_width,screen_height))
         self.icon_player = Icon(screen)
+        self.map = Map(screen)
 
     def draw(self,screen):
 
-        screen.blit(self.bg , (0,0))
+        # screen.blit(self.bg , (0,0))
+        self.map.draw()
         self.button.draw(screen)
         self.icon_player.draw(screen)
 

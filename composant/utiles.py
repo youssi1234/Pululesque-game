@@ -3,3 +3,4 @@ def marge_X(screen, pourcentage):
 
 def marge_Y(screen, pourcentage):
     return (screen.get_height() * pourcentage) / 100
+

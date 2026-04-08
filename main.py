@@ -1,13 +1,14 @@
 import pygame
-from menu import Menu
-from game import Game
+from screen.menu import Menu
+from screen.game import Game
 from etat import Etat
-from loadingAnim import LoadingAnim
+from composant.loadingAnim import LoadingAnim
+
 
 pygame.init()
 
-screen_width = 800
-screen_height = 620
+screen_width = 960
+screen_height = 540
 size_screen = (screen_width, screen_height)
 
 pygame.display.set_caption("Pygame Window")
@@ -18,6 +19,7 @@ game_state = Etat()
 menu = Menu(game_state , screen_width, screen_height)
 game = Game(game_state , screen_width , screen_height , screen)
 loadingAnim = LoadingAnim()
+
 
 
 fluidity = 60
@@ -33,6 +35,8 @@ while running:
             running = False
 
     game_state.update_loading()
+    pygame.display.update()
+
 
     if game_state.current_state == "menu":
         menu.draw(screen)
@@ -42,6 +46,8 @@ while running:
         loadingAnim.draw(screen)
 
     elif game_state.current_state == "game":
+
+        pygame.display.flip()
         game.handle_events(events)
         game.draw(screen)
         game.icon_player.move(screen)

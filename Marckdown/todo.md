@@ -129,3 +129,11 @@ puis mettre self devant les attributs pour dire que ce sont des attributs propre
 
     # pygame.SYSTEM_CURSOR_SIZE : 
 -> Curseur de redimensionnement (utilisé pour les curseurs de redimensionnement personnalisés)
+
+Pour pygame.transform.flip(image, flip_x, flip_y) :
+- image : l'image à retourner (Surface)
+- flip_x : booléen, True pour retourner horizontalement, False pour ne pas retourner
+- flip_y : booléen, True pour retourner verticalement, False pour ne pas retourner (pratique si on veut que le personnage marche sur le plafond par exemple)
+
+Mouvement Multi-directionnel :
+Pour permettre les diagonales sans bug de vitesse, il faut séparer le traitement de l'axe Horizontal (X) et de l'axe Vertical (Y). Chaque axe doit avoir son propre bloc if/elif. De cette façon, Pygame peut traiter une touche de chaque axe simultanément à chaque rafraîchissement d'image.
