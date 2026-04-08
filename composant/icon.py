@@ -4,20 +4,22 @@ import composant.utiles as utiles
 class Icon(pygame.sprite.Sprite):
     def __init__(self, screen):
         self.key_Held = {}
-        self.velocity = 10
+        self.velocity = 2
         self.images_run = []
         self.images_idle = []
         self.images_run_back = []
         self.images_idle_back = []
         self.last_direction = "right"  # Par défaut, le personnage regarde vers la droite
+        self.size_image = (25, 25)
+        self.marge = 3
 
         for i in range(6):
             brute = pygame.image.load(f"assets/craftpix-net-622999-free-pixel-art-tiny-hero-sprites/rush-pink/{i+1}.PNG").convert_alpha()
-            self.images_run.append(pygame.transform.scale(brute, (70, 70)))
+            self.images_run.append(pygame.transform.scale(brute, self.size_image))
             
         for i in range(4):
             brute = pygame.image.load(f"assets/craftpix-net-622999-free-pixel-art-tiny-hero-sprites/idle-pink/{i+1}.PNG").convert_alpha()
-            self.images_idle.append(pygame.transform.scale(brute, (70, 70)))
+            self.images_idle.append(pygame.transform.scale(brute, self.size_image))
 
         for i in range(6):
             self.images_run_back.append(pygame.transform.flip(self.images_run[i], True, False))
@@ -62,31 +64,42 @@ class Icon(pygame.sprite.Sprite):
             self.counter = 0
         self.index = int(self.counter)
 
-    def position(self,screen):
+    def position(self, screen):
+    # 1. On prépare les limites en nombres ENTIERS (int)
+        # Cela évite que le perso reste coincé à cause des chiffres après la virgule
+        m_x = int(utiles.marge_X(screen, self.marge))
+        m_y = int(utiles.marge_Y(screen, self.marge))
+        
+        limite_droite = int(screen.get_width() - self.rect.width - m_x)
+        limite_bas = int(screen.get_height() - self.rect.height - m_y)
 
+        # 2. GESTION DE L'AXE HORIZONTAL (X)
         if self.key_Held.get(pygame.K_RIGHT):
-            if self.rect.x >= (screen.get_width() - self.rect.width) - utiles.marge_X(screen, 10):
-                self.rect.x = (screen.get_width() - self.rect.width) - utiles.marge_X(screen, 10)
+            if self.rect.x >= limite_droite:
+                self.rect.x = limite_droite
             else:
                 self.rect.x += self.velocity
-
+                
         elif self.key_Held.get(pygame.K_LEFT):
-            if self.rect.x <= utiles.marge_X(screen, 10):
-                self.rect.x = utiles.marge_X(screen, 10)
+            if self.rect.x <= m_x:
+                self.rect.x = m_x
             else:
                 self.rect.x -= self.velocity
 
+        # 3. GESTION DE L'AXE VERTICAL (Y)
+        # On utilise un nouveau "if" (pas de elif ici) pour permettre les diagonales
         if self.key_Held.get(pygame.K_UP):
-            if self.rect.y <= utiles.marge_Y(screen, 10):
-                self.rect.y = utiles.marge_Y(screen, 10)
+            if self.rect.y <= m_y:
+                self.rect.y = m_y
             else:
                 self.rect.y -= self.velocity
-
+                
         elif self.key_Held.get(pygame.K_DOWN):
-            if self.rect.y >= (screen.get_height() - self.rect.height) - utiles.marge_Y(screen, 10):
-                self.rect.y = (screen.get_height() - self.rect.height) - utiles.marge_Y(screen, 10)
+            if self.rect.y >= limite_bas:
+                self.rect.y = limite_bas
             else:
                 self.rect.y += self.velocity
+
 
     def move(self, screen):
         self.direction()

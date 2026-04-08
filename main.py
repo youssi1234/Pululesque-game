@@ -7,8 +7,8 @@ from composant.loadingAnim import LoadingAnim
 
 pygame.init()
 
-screen_width = 800
-screen_height = 620
+screen_width = 960
+screen_height = 540
 size_screen = (screen_width, screen_height)
 
 pygame.display.set_caption("Pygame Window")
