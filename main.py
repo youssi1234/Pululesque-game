@@ -17,7 +17,7 @@ screen = pygame.display.set_mode(size_screen)
 
 game_state = Etat()
 menu = Menu(game_state , screen_width, screen_height)
-game = Game(game_state , screen_width , screen_height , screen)
+game = Game(game_state , screen)
 loadingAnim = LoadingAnim()
 
 
@@ -47,10 +47,9 @@ while running:
 
     elif game_state.current_state == "game":
 
-        pygame.display.flip()
+        game.update()
         game.handle_events(events)
         game.draw(screen)
-        game.icon_player.move(screen)
 
 
     pygame.display.flip()

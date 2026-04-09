@@ -8,7 +8,7 @@ class map(pygame.sprite.Sprite):
         self.tmx_data = pytmx.util_pygame.load_pygame('RikiLabs/assets/lot2/map.tmx')
         map_data = pyscroll.data.TiledMapData(self.tmx_data)    
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, screen.get_size())
-        map_layer.zoom = 2
+        map_layer.zoom = 1
         self.groupLayer_Map = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
 
         # on va prendre les zones de collisions 
