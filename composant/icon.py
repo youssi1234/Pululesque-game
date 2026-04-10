@@ -4,7 +4,7 @@ class Icon(pygame.sprite.Sprite):
     def __init__(self, screen):
         super().__init__()
         self.key_Held = {}
-        self.velocity = 2 
+        self.velocity = 1
         self.images_run = []
         self.images_idle = []
         self.images_run_back = []
