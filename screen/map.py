@@ -11,7 +11,7 @@ class Map:
         self.map_data = None
         self.group = None
 
-        self.switch_map("beach")
+        self.switch_map("sans titre")
 
 
     def switch_map(self, map: str):
@@ -19,7 +19,7 @@ class Map:
         self.map_data = pyscroll.data.TiledMapData(self.tmx_data)
         self.map_layer = pyscroll.BufferedRenderer(self.map_data, self.screen.get_size())
         self.map_layer.zoom = 2
-        self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=4)
+        self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=15)
 
         self.group.add(self.player)
         self.walls = []
